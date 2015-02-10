@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3ff710-69d3-40c6-b211-1c4e0c69baef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haystack/utils/loading.py" afterPath="$PROJECT_DIR$/haystack/utils/loading.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haystack/query.py" afterPath="$PROJECT_DIR$/haystack/query.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/haystack/signals.py" afterPath="$PROJECT_DIR$/haystack/signals.py" />
     </list>
     <ignored path="django-haystack.iws" />
@@ -54,8 +52,8 @@
       <file leaf-file-name="signals.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/haystack/signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.98145026" vertical-offset="1236" max-vertical-offset="1926">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.46543002" vertical-offset="804" max-vertical-offset="2034">
+              <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -176,6 +174,9 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="7e3ff710-69d3-40c6-b211-1c4e0c69baef" name="Default" comment="" />
@@ -249,8 +250,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/haystack/signals.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.98145026" vertical-offset="1236" max-vertical-offset="1926">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.46543002" vertical-offset="804" max-vertical-offset="2034">
+          <caret line="60" column="20" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="20" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

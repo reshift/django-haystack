@@ -55,7 +55,10 @@ class BaseSignalProcessor(object):
 
         #if error, rise the error itself
         if error:
-            self.connections['default'].get_unified_index().get_index(sender)
+            try:
+                self.connections['default'].get_unified_index().get_index(sender)
+            except NotHandled:
+                pass
 
 
     def handle_delete(self, sender, instance, **kwargs):
@@ -78,7 +81,10 @@ class BaseSignalProcessor(object):
 
         #if error, rise the error itself
         if error:
-            self.connections['default'].get_unified_index().get_index(sender)
+            try:
+                self.connections['default'].get_unified_index().get_index(sender)
+            except NotHandled:
+                pass
 
 
 class RealtimeSignalProcessor(BaseSignalProcessor):

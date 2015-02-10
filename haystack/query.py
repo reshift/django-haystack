@@ -50,16 +50,26 @@ class SearchQuerySet(object):
 
         backend_alias = connection_router.for_read(**hints)
 
-        if isinstance(backend_alias, (list, tuple)) and len(backend_alias):
-            # We can only effectively read from one engine.
-            backend_alias = backend_alias[0]
+        # if isinstance(backend_alias, (list, tuple)) and len(backend_alias):
+        #     # We can only effectively read from one engine.
+        #     backend_alias = backend_alias[0]
 
         # The ``SearchQuery`` might swap itself out for a different variant
-        # here.
-        if self.query:
-            self.query = self.query.using(backend_alias)
-        else:
-            self.query = connections[backend_alias].get_query()
+
+        error = True
+        for ba in backend_alias:
+            try:
+                if self.query:
+                    self.query = self.query.using(ba)
+                else:
+                    self.query = connections[ba].get_query()
+                error = False
+            except:
+                pass
+
+        if error:
+            self.query.using(backend_alias[0])
+
 
     def __getstate__(self):
         """
@@ -317,6 +327,12 @@ class SearchQuerySet(object):
 
         return clone
 
+    def order_by_distance(self, **kwargs):
+        """Alters the order in which the results should appear."""
+        clone = self._clone()
+        clone.query.add_order_by_distance(**kwargs)
+        return clone
+
     def highlight(self):
         """Adds highlighting to the results."""
         clone = self._clone()
@@ -409,13 +425,6 @@ class SearchQuerySet(object):
 
     def narrow(self, query):
         """Pushes existing facet choices into the search."""
-
-        if isinstance(query, SQ):
-            # produce query string using empty query of the same class
-            empty_query = self.query._clone()
-            empty_query._reset()
-            query = query.as_query_string(empty_query.build_query_fragment)
-
         clone = self._clone()
         clone.query.add_narrow_query(query)
         return clone

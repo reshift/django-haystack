@@ -42,13 +42,21 @@ class BaseSignalProcessor(object):
         """
         using_backends = self.connection_router.for_write(instance=instance)
 
+        error = True
         for using in using_backends:
             try:
                 index = self.connections[using].get_unified_index().get_index(sender)
                 index.update_object(instance, using=using)
-            except NotHandled:
+                error = False
+            #except NotHandled:
+            except:
                 # TODO: Maybe log it or let the exception bubble?
                 pass
+
+        #if error, rise the error itself
+        if error:
+            self.connections['default'].get_unified_index().get_index(sender)
+
 
     def handle_delete(self, sender, instance, **kwargs):
         """
@@ -57,13 +65,20 @@ class BaseSignalProcessor(object):
         """
         using_backends = self.connection_router.for_write(instance=instance)
 
+        error = True
         for using in using_backends:
             try:
                 index = self.connections[using].get_unified_index().get_index(sender)
                 index.remove_object(instance, using=using)
-            except NotHandled:
+                error = False
+            #except NotHandled:
+            except:
                 # TODO: Maybe log it or let the exception bubble?
                 pass
+
+        #if error, rise the error itself
+        if error:
+            self.connections['default'].get_unified_index().get_index(sender)
 
 
 class RealtimeSignalProcessor(BaseSignalProcessor):
